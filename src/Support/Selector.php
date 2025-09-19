@@ -30,11 +30,7 @@ final class Selector
         }
 
         // A period is a CSS selector if it's followed by a valid CSS class name pattern
-        if (preg_match('/\.[a-zA-Z_-][a-zA-Z0-9_-]*/', $selector)) {
-            return true;
-        }
-
-        return false;
+        return (bool) preg_match('/\.[a-zA-Z_-][a-zA-Z0-9_-]*/', $selector);
     }
 
     /**
