@@ -21,12 +21,17 @@ final class Selector
             return false;
         }
 
-        $cssSpecialChars = ['[', ']', '#', '.', '>', '+', '~', ':', '*', '|', '^', ',', '=', ',', '(', ')'];
+        $cssSpecialChars = ['[', ']', '#', '>', '+', '~', ':', '*', '|', '^', ',', '=', ',', '(', ')'];
 
         foreach ($cssSpecialChars as $cssSpecialChar) {
             if (str_contains($selector, $cssSpecialChar)) {
                 return true;
             }
+        }
+
+        // A period is a CSS selector if it's followed by a valid CSS class name pattern
+        if (preg_match('/\.[a-zA-Z_-][a-zA-Z0-9_-]*/', $selector)) {
+            return true;
         }
 
         return false;
